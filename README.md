@@ -45,7 +45,7 @@ npm install
 ```
 
 ### 4. Inicialização do Banco de Dados
-Para inicializar o banco de dados SQLite e criar as tabelas necessárias:
+Para inicializar o banco de dados SQLite e criar as tabelas necessárias (o arquivo `.env` precisa existir na raiz do projeto, basta copiar o `.env.example` para `.env`):
 ```bash
 npx prisma migrate dev
 ```
