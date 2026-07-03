@@ -1,6 +1,7 @@
 import { statusCode } from "@shared/enums/status-code";
 import { errorHandler } from "@shared/errorHandler/error-handler";
 import { errorNamesToStatusCode } from "@shared/errorHandler/enums/error-name-table";
+import { getEnv } from "@shared/validators/env";
 import { FastifyInstance, FastifyReply, FastifyRequest, FastifyError } from "fastify";
 import { ZodError } from "zod";
 
@@ -14,7 +15,7 @@ export async function errorHandlingMiddleware(
   _request: FastifyRequest,
   reply: FastifyReply,
 ): Promise<void> {
-  if (process.env.DEBUG_MODE === "true") this.log.error(error);
+  if (getEnv().DEBUG_MODE) this.log.error(error);
 
   if (error instanceof ZodError) {
     reply.status(statusCode.BAD_REQUEST).send({

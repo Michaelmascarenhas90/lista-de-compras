@@ -5,15 +5,12 @@ import { validateEnv } from "@shared/validators/env";
 import { databaseInit } from "@config/database/prisma";
 import { ZodError } from "zod";
 
-const ENVIRONMENT = process.env.NODE_ENV || "development";
-const SERVER_PORT = parseInt(process.env.SERVER_PORT || "3000", 10);
-
 async function startServer() {
   try {
-    validateEnv();
+    const env = validateEnv();
     await databaseInit();
-    await routesRegister(app, ENVIRONMENT);
-    await app.listen({ port: SERVER_PORT, host: "0.0.0.0" });
+    await routesRegister(app, env.NODE_ENV);
+    await app.listen({ port: env.SERVER_PORT, host: "0.0.0.0" });
   } catch (error) {
     if (error instanceof ZodError) {
       const fields = error.issues.map((issue) => issue.path.join(".")).join(", ");

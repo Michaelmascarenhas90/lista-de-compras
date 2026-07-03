@@ -2,9 +2,7 @@ import {
   GithubUser,
   githubUsersSchema,
 } from "@shared/github/github-user.schema";
-
-const GITHUB_API_URL =
-  process.env.GITHUB_API_URL || "https://api.github.com/users";
+import { getEnv } from "@shared/validators/env";
 
 /**
  * Busca usuários públicos do GitHub. Em qualquer falha (rede, status não-2xx,
@@ -13,7 +11,7 @@ const GITHUB_API_URL =
  */
 const listUsers = async (): Promise<GithubUser[] | null> => {
   try {
-    const response = await fetch(GITHUB_API_URL);
+    const response = await fetch(getEnv().GITHUB_API_URL);
     if (!response.ok) return null;
 
     const payload = await response.json();

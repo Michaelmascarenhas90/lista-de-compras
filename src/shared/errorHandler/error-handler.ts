@@ -1,5 +1,6 @@
 import { statusCode } from "@shared/enums/status-code";
 import { errorNamesToStatusCode } from "@shared/errorHandler/enums/error-name-table";
+import { getEnv } from "@shared/validators/env";
 
 interface HandledError {
   message: string;
@@ -12,7 +13,7 @@ interface HandledError {
  * Anti-leak: só inclui o stack quando `DEBUG_MODE=true`.
  */
 export function errorHandler({ message, stack, name }: HandledError) {
-  const isDebugMode = process.env.DEBUG_MODE === "true";
+  const isDebugMode = getEnv().DEBUG_MODE;
 
   const code =
     errorNamesToStatusCode[name as keyof typeof errorNamesToStatusCode] || null;
