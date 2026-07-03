@@ -85,6 +85,20 @@ describe("compras.service", () => {
       expect(repositoryMock.decrementAndCreate).not.toHaveBeenCalled();
     });
 
+    it("retorna PRECONDITION_FAILED (412) sem chamar o GitHub quando o estoque já está zerado", async () => {
+      repositoryMock.findItemById.mockResolvedValue({
+        ...itemFixture,
+        qtd_atual: 0,
+      });
+
+      const [error, data] = await comprasService.create(payload);
+
+      expect(data).toBeNull();
+      expect(error?.name).toBe(errors.names.PRECONDITION_FAILED);
+      expect(githubMock.listUsers).not.toHaveBeenCalled();
+      expect(repositoryMock.decrementAndCreate).not.toHaveBeenCalled();
+    });
+
     it("retorna PRECONDITION_FAILED (412) quando não há estoque", async () => {
       repositoryMock.findItemById.mockResolvedValue(itemFixture);
       githubMock.listUsers.mockResolvedValue([buyerFixture]);

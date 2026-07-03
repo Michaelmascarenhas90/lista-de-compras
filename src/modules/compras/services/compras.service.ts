@@ -17,6 +17,14 @@ const create = async (payload: unknown) => {
     );
   }
 
+  if (item.qtd_atual <= 0) {
+    return err(
+      errors.messages.INSUFFICIENT_STOCK(item.nome),
+      errors.setStackAuto().getStack(),
+      errors.names.PRECONDITION_FAILED,
+    );
+  }
+
   const users = await githubClient.listUsers();
   if (!users) {
     return err(
