@@ -23,7 +23,8 @@ export async function errorHandlingMiddleware(
   }
 
   const { errStatusCode, errMessage } = errorHandler(error);
-  reply.status(errStatusCode || statusCode.INTERNAL_SERVER_ERROR).send({
+  const finalStatusCode = (error as any).statusCode || errStatusCode || statusCode.INTERNAL_SERVER_ERROR;
+  reply.status(finalStatusCode).send({
     error: errMessage || "Um erro desconhecido ocorreu, tente novamente.",
   });
 }
