@@ -1,6 +1,7 @@
 import { statusCode } from "@shared/enums/status-code";
 import { errorHandler } from "@shared/errorHandler/error-handler";
-import { FastifyInstance, FastifyReply, FastifyRequest } from "fastify";
+import { errorNamesToStatusCode } from "@shared/errorHandler/enums/error-name-table";
+import { FastifyInstance, FastifyReply, FastifyRequest, FastifyError } from "fastify";
 import { ZodError } from "zod";
 
 /**
@@ -23,8 +24,15 @@ export async function errorHandlingMiddleware(
   }
 
   const { errStatusCode, errMessage } = errorHandler(error);
-  const finalStatusCode = (error as any).statusCode || errStatusCode || statusCode.INTERNAL_SERVER_ERROR;
+  const finalStatusCode = (error as FastifyError).statusCode ?? errStatusCode ?? statusCode.INTERNAL_SERVER_ERROR;
+  
+  const isKnownError = error.name in errorNamesToStatusCode;
+  const isServerFault = finalStatusCode >= statusCode.INTERNAL_SERVER_ERROR;
+  const safeMessage = (isServerFault && !isKnownError) 
+    ? "Um erro desconhecido ocorreu, tente novamente." 
+    : errMessage;
+
   reply.status(finalStatusCode).send({
-    error: errMessage || "Um erro desconhecido ocorreu, tente novamente.",
+    error: safeMessage || "Um erro desconhecido ocorreu, tente novamente.",
   });
 }
