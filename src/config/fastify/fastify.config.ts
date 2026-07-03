@@ -6,6 +6,8 @@ import Fastify from "fastify";
 
 const fastify = Fastify({ logger: true });
 
+fastify.setValidatorCompiler(() => (data) => ({ value: data }));
+
 fastify.register(cors, { origin: "*" });
 
 // NOTE: swagger registrado aqui (antes de routesRegister no server.ts) para
