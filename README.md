@@ -28,7 +28,7 @@ A estrutura do projeto adota uma adaptação do padrão de **Vertical Slice Arch
 ## Como Executar
 
 ### 1. Pré-requisitos
-- Node.js (versão >= 18)
+- Node.js (versão >= 20 LTS)
 - NPM (ou outro gerenciador de sua escolha)
 
 ### 2. Configuração do Ambiente
