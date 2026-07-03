@@ -7,8 +7,6 @@ const fastify = Fastify({ logger: true });
 
 fastify.register(cors, { origin: "*" });
 
-// Anti-leak de saída: registrado sem chaves sensíveis reais (este domínio não tem),
-// mas mantém o ponto de extensão e não quebra datas/arrays.
 fastify.addHook("preSerialization", dataInterceptor());
 
 fastify.setErrorHandler(errorHandlingMiddleware);
