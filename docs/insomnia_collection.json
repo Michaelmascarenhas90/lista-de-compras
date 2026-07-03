@@ -1,0 +1,145 @@
+{
+  "_type": "export",
+  "__export_format": 4,
+  "__export_date": "2024-03-01T00:00:00.000Z",
+  "__export_source": "insomnia.desktop.app:v8.6.0",
+  "resources": [
+    {
+      "_id": "wrk_api_lista_compras",
+      "parentId": null,
+      "modified": 1709251200000,
+      "created": 1709251200000,
+      "name": "API Lista de Compras",
+      "description": "API REST em Fastify + Prisma + SQLite para gerenciar itens e compras aleatórias.",
+      "scope": "collection",
+      "_type": "workspace"
+    },
+    {
+      "_id": "env_api_lista_compras",
+      "parentId": "wrk_api_lista_compras",
+      "modified": 1709251200000,
+      "created": 1709251200000,
+      "name": "Base Environment",
+      "data": {
+        "base_url": "http://localhost:3000"
+      },
+      "dataPropertyOrder": {
+        "&": [
+          "base_url"
+        ]
+      },
+      "color": null,
+      "isPrivate": false,
+      "metaSortKey": 1709251200000,
+      "_type": "environment"
+    },
+    {
+      "_id": "req_criar_item",
+      "parentId": "wrk_api_lista_compras",
+      "modified": 1709251200000,
+      "created": 1709251200000,
+      "url": "{{ _.base_url }}/itens",
+      "name": "Criar Item",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"nome\": \"Cadeira Gamer\",\n\t\"preco\": 1200.50,\n\t\"qtd_atual\": 5\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1709251200000,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_listar_itens",
+      "parentId": "wrk_api_lista_compras",
+      "modified": 1709251200000,
+      "created": 1709251200000,
+      "url": "{{ _.base_url }}/itens",
+      "name": "Listar Itens",
+      "description": "",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {},
+      "metaSortKey": -1709251100000,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_criar_compra",
+      "parentId": "wrk_api_lista_compras",
+      "modified": 1709251200000,
+      "created": 1709251200000,
+      "url": "{{ _.base_url }}/compras",
+      "name": "Criar Compra",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"item_id\": 1\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1709251000000,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_listar_compras",
+      "parentId": "wrk_api_lista_compras",
+      "modified": 1709251200000,
+      "created": 1709251200000,
+      "url": "{{ _.base_url }}/compras",
+      "name": "Listar Compras",
+      "description": "",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {},
+      "metaSortKey": -1709250900000,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    }
+  ]
+}
