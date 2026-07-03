@@ -1,0 +1,20 @@
+import { statusCode } from "@shared/enums/status-code";
+
+export const errorNamesToStatusCode = {
+  OK: statusCode.OK,
+  CREATED: statusCode.CREATED,
+  NO_CONTENT: statusCode.NO_CONTENT,
+  BAD_REQUEST: statusCode.BAD_REQUEST,
+  UNAUTHORIZED: statusCode.UNAUTHORIZED,
+  FORBIDDEN: statusCode.FORBIDDEN,
+  NOT_FOUND: statusCode.NOT_FOUND,
+  CONFLICT: statusCode.CONFLICT,
+  GONE: statusCode.GONE,
+  PRECONDITION_FAILED: statusCode.PRECONDITION_FAILED,
+  UNPROCESSABLE_ENTITY: statusCode.UNPROCESSABLE_ENTITY,
+  TOO_MANY_REQUESTS: statusCode.TOO_MANY_REQUESTS,
+  INTERNAL_SERVER_ERROR: statusCode.INTERNAL_SERVER_ERROR,
+  NOT_IMPLEMENTED: statusCode.NOT_IMPLEMENTED,
+  SERVICE_UNAVAILABLE: statusCode.SERVICE_UNAVAILABLE,
+  GATEWAY_TIMEOUT: statusCode.GATEWAY_TIMEOUT,
+} as const;
