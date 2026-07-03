@@ -1,0 +1,33 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Item {
+  id        Int      @id @default(autoincrement())
+  nome      String
+  preco     Float
+  qtd_atual Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  compras Compra[]
+
+  @@map("itens")
+}
+
+model Compra {
+  id                     Int      @id @default(autoincrement())
+  comprador_github_login String
+  item_id                Int
+  createdAt              DateTime @default(now())
+  updatedAt              DateTime @updatedAt
+
+  item Item @relation(fields: [item_id], references: [id])
+
+  @@map("compras")
+}
