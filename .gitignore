@@ -19,4 +19,4 @@ npm-debug.log*
 # OS / editor
 .DS_Store
 .claude
-.CLAUDE.md
+CLAUDE.md
